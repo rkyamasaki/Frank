@@ -22,6 +22,10 @@
 	],
 	"credentials":{
 		"sshUsername":"",
-		"sshPublicKey":""
+		"sshPublicKey":"",
+		"vpnHost":"",
+		"vpnUser":"",
+		"vpnPassword":"",
+		"vpnAuthGroup":""
 	}
 }
