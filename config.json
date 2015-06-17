@@ -1,0 +1,27 @@
+{
+	"toggleButton1":"VPN 0",
+	"toggleButton2":"VPN 1",
+	"toggleButton3":">",
+	"button1":"# Button 0",
+	"tunnelList":[
+		{
+			"label":"Tunnel #00000",
+			"path": [
+				{
+					"originPort":9090,
+					"targetHost":"localhost",
+					"destPort":9090
+				},
+				{
+					"originPort":8080,
+					"targetHost":"localhost",
+					"destPort":8080
+				}
+			]
+		}
+	],
+	"credentials":{
+		"sshUsername":"",
+		"sshPublicKey":""
+	}
+}
