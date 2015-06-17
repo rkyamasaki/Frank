@@ -4,6 +4,8 @@
   <requires lib="gtk+" version="3.10"/>
   <object class="GtkApplicationWindow" id="MainWindow">
     <property name="can_focus">False</property>
+    <property name="halign">center</property>
+    <property name="valign">start</property>
     <property name="title" translatable="yes">Wuohoy - development</property>
     <property name="resizable">False</property>
     <property name="window_position">center</property>
@@ -21,12 +23,12 @@
             <property name="can_focus">False</property>
             <property name="orientation">vertical</property>
             <child>
-              <object class="GtkToggleButton" id="toggleButton1">
-                <property name="label" translatable="yes">VPN - KenzanMedia</property>
+              <object class="GtkToggleButton" id="toggleButtonVPN_01">
+                <property name="label" translatable="yes">ToggleButton VPN-1</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
-                <signal name="clicked" handler="onToggleButton1_clicked" swapped="no"/>
+                <signal name="clicked" handler="onToggleButtonVPN_01_clicked" swapped="no"/>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -35,13 +37,13 @@
               </packing>
             </child>
             <child>
-              <object class="GtkToggleButton" id="toggleButton2">
-                <property name="label" translatable="yes">Olympus</property>
+              <object class="GtkToggleButton" id="toggleButtonVPN_02">
+                <property name="label" translatable="yes">ToggleButton VPN-2</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
                 <property name="yalign">0.52999997138977051</property>
-                <signal name="clicked" handler="onToggleButton2_clicked" swapped="no"/>
+                <signal name="clicked" handler="onToggleButtonVPN_02_clicked" swapped="no"/>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -50,12 +52,12 @@
               </packing>
             </child>
             <child>
-              <object class="GtkButton" id="button1">
-                <property name="label" translatable="yes">Code Review</property>
+              <object class="GtkButton" id="buttonRepository">
+                <property name="label" translatable="yes">Button-Respository</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
-                <signal name="clicked" handler="onButton1_clicked" swapped="no"/>
+                <signal name="clicked" handler="onButtonRepository_clicked" swapped="no"/>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -69,12 +71,12 @@
                 <property name="can_focus">False</property>
                 <property name="baseline_row">1</property>
                 <child>
-                  <object class="GtkToggleButton" id="toggleButton3">
+                  <object class="GtkToggleButton" id="toggleButtonConnectTunel">
                     <property name="label" translatable="yes">&gt;</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
-					<signal name="clicked" handler="onToggleButton3_clicked" swapped="no"/>
+                    <signal name="clicked" handler="onToggleButtonConnectTunel_clicked" swapped="no"/>
                   </object>
                   <packing>
                     <property name="left_attach">1</property>
@@ -126,18 +128,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkTextView" id="textView1">
-                <property name="width_request">550</property>
-                <property name="height_request">370</property>
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-              </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="fill">True</property>
-                <property name="pack_type">end</property>
-                <property name="position">1</property>
-              </packing>
+              <placeholder/>
             </child>
           </object>
           <packing>

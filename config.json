@@ -1,8 +1,8 @@
 {
-	"toggleButton1":"VPN 0",
-	"toggleButton2":"VPN 1",
-	"toggleButton3":">",
-	"button1":"Button 0",
+	"toggleButtonVPN_01":"VPN 0",
+	"toggleButtonVPN_02":"VPN 1",
+	"toggleButtonConnectTunel":">",
+	"buttonRepository":"Repository",
 	"tunnelList":[
 		{
 			"label":"Tunnel #00000",

@@ -11,7 +11,7 @@ class WidgetHandlers:
 		self.builder = builder
 		self.sshProcess = None
 
-	def onToggleButton1_clicked(self, widget):
+	def onToggleButtonVPN_01_clicked(self, widget):
 		print "ToggleButton1 Clicked"
 
 		vpnHost = ConfigLoader.preferences['credentials']['vpnHost']
@@ -24,10 +24,10 @@ class WidgetHandlers:
 			' --authgroup=' + vpnAuthGroup +
 			' --passwd-on-stdin --no-cert-check --no-xmlpost ' + vpnHost, shell=True)
 
-	def onToggleButton2_clicked(self, widget):
+	def onToggleButtonVPN_02_clicked(self, widget):
 		print "ToggleButton2 Clicked"
 
-	def onToggleButton3_clicked(self, widget):
+	def onToggleButtonConnectTunel_clicked(self, widget):
 		selectCombo1 = self.builder.get_object("selectCombo1")
 
 		if widget.get_active():
@@ -49,5 +49,5 @@ class WidgetHandlers:
 				self.sshProcess = None
 			selectCombo1.set_sensitive(True)
 
-	def onButton1_clicked(self, widget):
+	def onButtonRepository_clicked(self, widget):
 		print "Button1 Clicked"

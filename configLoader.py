@@ -6,9 +6,10 @@ import json
 class ConfigLoader:
 
 	widgets = [
-		"toggleButton1",
-		"toggleButton2",
-		"button1"
+		"toggleButtonVPN_01",
+		"toggleButtonVPN_02",
+		"toggleButtonConnectTunel",
+		"buttonRepository"
 	]
 
 	preferences = None;
