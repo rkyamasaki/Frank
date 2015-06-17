@@ -3,12 +3,10 @@
 	"toggleButton2":"VPN 1",
 	"toggleButton3":">",
 	"button1":"Button 0",
-
-	"tunnelList":
-	[
+	"tunnelList":[
 		{
 			"label":"Tunnel #00000",
-			"path":[
+			"path": [
 				{
 					"originPort":"",
 					"targetHost":"",
@@ -22,10 +20,12 @@
 			]
 		}
 	],
-
 	"credentials":{
 		"sshUsername":"",
 		"sshPrivateKey":""
+		"vpnHost":"",
+		"vpnUser":"",
+		"vpnPassword":"",
+		"vpnAuthGroup":""
 	}
-
 }

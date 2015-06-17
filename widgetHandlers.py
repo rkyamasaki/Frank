@@ -1,4 +1,6 @@
 #!/usr/bin/env python
+from configLoader import ConfigLoader
+import subprocess
 
 from configLoader import ConfigLoader
 import subprocess
@@ -11,6 +13,13 @@ class WidgetHandlers:
 
 	def onToggleButton1_clicked(self, widget):
 		print "ToggleButton1 Clicked"
+
+		vpnHost = ConfigLoader.preferences['credentials']['vpnHost']
+		vpnUser = ConfigLoader.preferences['credentials']['vpnUser']
+		vpnPassword = ConfigLoader.preferences['credentials']['vpnPassword'].replace(';', '\;')
+		vpnAuthGroup = ConfigLoader.preferences['credentials']['vpnAuthGroup']
+
+		subprocess.call('echo ' + vpnPassword + ' | sudo openconnect --user=' + vpnUser + ' --authgroup=' + vpnAuthGroup + ' --passwd-on-stdin --no-cert-check --no-xmlpost ' + vpnHost, shell=True)
 
 	def onToggleButton2_clicked(self, widget):
 		print "ToggleButton2 Clicked"

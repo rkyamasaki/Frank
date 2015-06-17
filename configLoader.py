@@ -13,6 +13,8 @@ class ConfigLoader:
 
 	preferences = None;
 
+	preferences = None
+
 	@staticmethod
 	def configure(builder, filePath):
 		print "Loading configuration from file [" + filePath + "]..."
