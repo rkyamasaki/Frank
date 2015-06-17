@@ -19,7 +19,10 @@ class WidgetHandlers:
 		vpnPassword = ConfigLoader.preferences['credentials']['vpnPassword'].replace(';', '\;')
 		vpnAuthGroup = ConfigLoader.preferences['credentials']['vpnAuthGroup']
 
-		subprocess.call('echo ' + vpnPassword + ' | sudo openconnect --user=' + vpnUser + ' --authgroup=' + vpnAuthGroup + ' --passwd-on-stdin --no-cert-check --no-xmlpost ' + vpnHost, shell=True)
+		subprocess.call('echo ' + vpnPassword +
+			' | sudo openconnect --user=' + vpnUser +
+			' --authgroup=' + vpnAuthGroup +
+			' --passwd-on-stdin --no-cert-check --no-xmlpost ' + vpnHost, shell=True)
 
 	def onToggleButton2_clicked(self, widget):
 		print "ToggleButton2 Clicked"
@@ -35,7 +38,7 @@ class WidgetHandlers:
 
 			command = ''
 			for target in ConfigLoader.preferences['tunnelList'][0]['path']:
-				command = command + ' -L '  + target['originPort'] + ':' + target['targetHost'] + ':' + target['destPort']
+				command = command + ' -L ' + target['originPort'] + ':' + target['targetHost'] + ':' + target['destPort']
 
 			self.sshProcess = subprocess.Popen('ssh -i ' + sshKey + ' ' + user + command, shell=True)
 		else:

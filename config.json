@@ -22,7 +22,7 @@
 	],
 	"credentials":{
 		"sshUsername":"",
-		"sshPrivateKey":""
+		"sshPrivateKey":"",
 		"vpnHost":"",
 		"vpnUser":"",
 		"vpnPassword":"",
