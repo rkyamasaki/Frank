@@ -12,8 +12,6 @@ class ConfigLoader:
 		"buttonRepository"
 	]
 
-	preferences = None;
-
 	preferences = None
 
 	@staticmethod
