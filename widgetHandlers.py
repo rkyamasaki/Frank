@@ -2,9 +2,6 @@
 from configLoader import ConfigLoader
 import subprocess
 
-from configLoader import ConfigLoader
-import subprocess
-
 class WidgetHandlers:
 
 	def __init__(self, builder):
@@ -14,15 +11,21 @@ class WidgetHandlers:
 	def onToggleButtonVPN_01_clicked(self, widget):
 		print "ToggleButton1 Clicked"
 
-		vpnHost = ConfigLoader.preferences['credentials']['vpnHost']
-		vpnUser = ConfigLoader.preferences['credentials']['vpnUser']
-		vpnPassword = ConfigLoader.preferences['credentials']['vpnPassword'].replace(';', '\;')
-		vpnAuthGroup = ConfigLoader.preferences['credentials']['vpnAuthGroup']
+		if widget.get_active():
 
-		subprocess.call('echo ' + vpnPassword +
-			' | sudo openconnect --user=' + vpnUser +
-			' --authgroup=' + vpnAuthGroup +
-			' --passwd-on-stdin --no-cert-check --no-xmlpost ' + vpnHost, shell=True)
+			vpnHost = ConfigLoader.preferences['credentials']['vpnHost']
+			vpnUser = ConfigLoader.preferences['credentials']['vpnUser']
+			vpnPassword = ConfigLoader.preferences['credentials']['vpnPassword'].replace(';', '\;')
+			vpnAuthGroup = ConfigLoader.preferences['credentials']['vpnAuthGroup']
+
+			subprocess.Popen('echo ' + vpnPassword +
+				' | sudo openconnect --user=' + vpnUser +
+				' --authgroup=' + vpnAuthGroup +
+				' --passwd-on-stdin --no-cert-check --no-xmlpost ' + vpnHost, shell=True)
+		else:
+
+			subprocess.Popen('sudo kill $(ps aux | grep [o]penconnect | awk \'{print $2}\')', shell=True)
+
 
 	def onToggleButtonVPN_02_clicked(self, widget):
 		print "ToggleButton2 Clicked"
