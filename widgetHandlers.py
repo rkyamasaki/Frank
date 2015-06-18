@@ -37,14 +37,13 @@ class WidgetHandlers:
 			sshKey = ConfigLoader.preferences['credentials']['sshPrivateKey']
 
 			command = ''
-			for target in ConfigLoader.preferences['tunnelList'][0]['path']:
+			for target in ConfigLoader.preferences['tunnelList'][selectCombo1.get_active()]['path']:
 				command = command + ' -L ' + target['originPort'] + ':' + target['targetHost'] + ':' + target['destPort']
 
 			self.sshProcess = subprocess.Popen('ssh -i ' + sshKey + ' ' + user + command, shell=True)
 		else:
 
 			if self.sshProcess is not None:
-				print "Killing process..."
 				self.sshProcess.terminate()
 				self.sshProcess = None
 			selectCombo1.set_sensitive(True)
