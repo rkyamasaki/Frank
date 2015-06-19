@@ -7,17 +7,13 @@ from widgetHandlers import WidgetHandlers
 class Wuohoy:
 
 	def activate(self, widget, data=None):
-		builder = Gtk.Builder()
-		builder.add_from_file("gui.glade")
-		builder.connect_signals(WidgetHandlers(builder));
+		Wuohoy.window.show_all()
 
-		ConfigLoader.configure(builder)
-		self.window = builder.get_object("MainWindow")
-		self.window.connect('destroy', self.hide)
-		self.window.show_all()
 
 	def hide(self, widget, data=None):
-		self.window.hide()
+		Wuohoy.window.hide()
+		return True
+
 
 	def staticon_right_click(self, icon, button, time):
 		self.menu = Gtk.Menu()
@@ -43,12 +39,25 @@ class Wuohoy:
 
 
 	def __init__(self):
+		#main-window
+		builder = Gtk.Builder()
+		builder.add_from_file("gui.glade")
+		builder.connect_signals(WidgetHandlers(builder));
+
+		Wuohoy.window = builder.get_object("MainWindow")
+		Wuohoy.window.connect('delete-event', self.hide)
+		ConfigLoader.configure(builder)
+
+		print "main window created"		
+
+		#systray-icon
 		self.staticon = Gtk.StatusIcon()
 		self.staticon.set_from_stock(Gtk.STOCK_EXECUTE)
 		self.staticon.connect('activate', self.activate)
 		self.staticon.connect('popup-menu', self.staticon_right_click)
 		self.staticon.set_visible(True)
 		self.window = None
+
 
 if __name__ == "__main__":
 	hwg = Wuohoy()
