@@ -5,6 +5,8 @@ import json
 
 class ConfigLoader:
 
+	CONFIGURATION_FILE = "config.json"
+
 	widgets = [
 		"toggleButtonVPN_01",
 		"toggleButtonVPN_02",
@@ -12,15 +14,8 @@ class ConfigLoader:
 		"buttonRepository"
 	]
 
-	preferences = None
-
 	@staticmethod
-	def configure(builder, filePath):
-		print "Loading configuration from file [" + filePath + "]..."
-
-		with open(filePath) as config_file:
-			ConfigLoader.preferences = json.loads(config_file.read())
-
+	def configure(builder):
 		for widget_id in ConfigLoader.widgets:
 			widget = builder.get_object(widget_id)
 			widget.set_label(ConfigLoader.preferences[widget_id])
@@ -35,3 +30,10 @@ class ConfigLoader:
 		tunnelSelectCombo.pack_start(renderer_text, True)
 		tunnelSelectCombo.add_attribute(renderer_text, "text", 0)
 
+
+	def loadPreferences(filePath):
+		print "Loading preferences"
+		with open(filePath) as config_file:
+			return json.loads(config_file.read())
+
+	preferences = loadPreferences(CONFIGURATION_FILE)
