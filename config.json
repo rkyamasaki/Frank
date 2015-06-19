@@ -3,6 +3,30 @@
 	"toggleButtonVPN_02":"VPN 1",
 	"toggleButtonConnectTunel":">",
 	"buttonRepository":"Repository",
+	"systray-menu":[
+		{
+			"label": "About",
+			"actions":[
+				{
+					"name":"activate",
+					"module":"callbacks",
+					"className":"Callbacks",
+					"command":"about_application"
+				}
+			]
+		},
+		{
+			"label": "Exit",
+			"actions":[
+				{
+					"name":"activate",
+					"module":"callbacks",
+					"className":"Callbacks",
+					"command":"exit_application"
+				}
+			]
+		}
+	],
 	"tunnelList":[
 		{
 			"label":"Tunnel #00000",
