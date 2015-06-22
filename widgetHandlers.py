@@ -1,30 +1,47 @@
 #!/usr/bin/env python
-from configLoader import ConfigLoader
-import subprocess
 
 from configLoader import ConfigLoader
 import subprocess
+import psutil
 
 class WidgetHandlers:
+
+	@staticmethod
+	def kill_process_tree(pid):
+		print "killing process tree... " + str(pid)
+		parent = psutil.Process(pid)
+		for child in parent.children(recursive=True):
+			print "killing child process " + str(child)
+			child.kill()
+		parent.kill()
+
 
 	def __init__(self, builder):
 		self.builder = builder
 		self.sshProcess = None
 
-	def onToggleButton1_clicked(self, widget):
-		print "ToggleButton1 Clicked"
+	def onToggleButtonVPN_01_clicked(self, widget):
 
-		vpnHost = ConfigLoader.preferences['credentials']['vpnHost']
-		vpnUser = ConfigLoader.preferences['credentials']['vpnUser']
-		vpnPassword = ConfigLoader.preferences['credentials']['vpnPassword'].replace(';', '\;')
-		vpnAuthGroup = ConfigLoader.preferences['credentials']['vpnAuthGroup']
+		if widget.get_active():
+			vpnHost = ConfigLoader.preferences['credentials']['vpnHost']
+			vpnUser = ConfigLoader.preferences['credentials']['vpnUser']
+			vpnPassword = ConfigLoader.preferences['credentials']['vpnPassword'].replace(';', '\;')
+			vpnAuthGroup = ConfigLoader.preferences['credentials']['vpnAuthGroup']
 
-		subprocess.call('echo ' + vpnPassword + ' | sudo openconnect --user=' + vpnUser + ' --authgroup=' + vpnAuthGroup + ' --passwd-on-stdin --no-cert-check --no-xmlpost ' + vpnHost, shell=True)
+			self.vpnProcess = subprocess.Popen('echo ' + vpnPassword +
+				' | sudo openconnect --user=' + vpnUser +
+				' --authgroup=' + vpnAuthGroup +
+				' --passwd-on-stdin --no-cert-check --no-xmlpost ' + vpnHost, shell=True)
+		else:
+			if self.vpnProcess is not None:
+				WidgetHandlers.kill_process_tree(self.vpnProcess.pid)
+				self.sshProcess = None
 
-	def onToggleButton2_clicked(self, widget):
+
+	def onToggleButtonVPN_02_clicked(self, widget):
 		print "ToggleButton2 Clicked"
 
-	def onToggleButton3_clicked(self, widget):
+	def onToggleButtonConnectTunel_clicked(self, widget):
 		selectCombo1 = self.builder.get_object("selectCombo1")
 
 		if widget.get_active():
@@ -34,17 +51,16 @@ class WidgetHandlers:
 			sshKey = ConfigLoader.preferences['credentials']['sshPrivateKey']
 
 			command = ''
-			for target in ConfigLoader.preferences['tunnelList'][0]['path']:
-				command = command + ' -L '  + target['originPort'] + ':' + target['targetHost'] + ':' + target['destPort']
+			for target in ConfigLoader.preferences['tunnelList'][selectCombo1.get_active()]['path']:
+				command = command + ' -L ' + target['originPort'] + ':' + target['targetHost'] + ':' + target['destPort']
 
 			self.sshProcess = subprocess.Popen('ssh -i ' + sshKey + ' ' + user + command, shell=True)
 		else:
 
 			if self.sshProcess is not None:
-				print "Killing process..."
-				self.sshProcess.terminate()
+				WidgetHandlers.kill_process_tree(self.sshProcess.pid)
 				self.sshProcess = None
 			selectCombo1.set_sensitive(True)
 
-	def onButton1_clicked(self, widget):
+	def onButtonRepository_clicked(self, widget):
 		print "Button1 Clicked"

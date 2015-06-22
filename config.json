@@ -1,8 +1,32 @@
 {
-	"toggleButton1":"VPN 0",
-	"toggleButton2":"VPN 1",
-	"toggleButton3":">",
-	"button1":"Button 0",
+	"toggleButtonVPN_01":"VPN 0",
+	"toggleButtonVPN_02":"VPN 1",
+	"toggleButtonConnectTunel":">",
+	"buttonRepository":"Repository",
+	"systray-menu":[
+		{
+			"label": "About",
+			"actions":[
+				{
+					"name":"activate",
+					"module":"callbacks",
+					"className":"Callbacks",
+					"command":"about_application"
+				}
+			]
+		},
+		{
+			"label": "Exit",
+			"actions":[
+				{
+					"name":"activate",
+					"module":"callbacks",
+					"className":"Callbacks",
+					"command":"exit_application"
+				}
+			]
+		}
+	],
 	"tunnelList":[
 		{
 			"label":"Tunnel #00000",
@@ -22,7 +46,7 @@
 	],
 	"credentials":{
 		"sshUsername":"",
-		"sshPrivateKey":""
+		"sshPrivateKey":"",
 		"vpnHost":"",
 		"vpnUser":"",
 		"vpnPassword":"",
