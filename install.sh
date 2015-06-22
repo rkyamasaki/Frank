@@ -1,17 +1,44 @@
-mkdir tmp
+#Check if python is already installed
+#if is not installed then, it will be installed
+if which python2.7 >/dev/null; then
+	echo "Python 2.7 is already installed."
+else
+	echo "Installing Python 2.7"
+	sudo add-apt-repository ppa:fkrull/deadsnakes
+	sudo apt-get update
+	sudo apt-get install python2.7
+fi
 
-sudo apt-get install make build-essential zlib1g-dev libbz2-dev libreadline-dev
-sudo apt-get update
-sudo apt-get install sqlite3 libsqlite3-dev
-sudo apt-get install libssl-dev
+echo "Installing python-dev"
+sudo apt-get install python-dev
 
-cd tmp
-wget http://python.org/ftp/python/2.7.5/Python-2.7.5.tgz
-tar -xvf Python-2.7.5.tgz
-cd Python-2.7.5
-./configure
-make
-sudo checkinstall
+echo "Installing python-psutil"
+sudo apt-get install python-psutil
 
-cd ..
-rm -r tmp/
+
+echo "           ,,====-------------------====,,          "
+echo "         ###                             ###        "
+echo "        ###   -|-                         ###       "
+echo "       ###    -|-                          ###      "
+echo "       ###    -|-                          ###      "
+echo "       ####                               ####      "
+echo "       ###    ________________________     ###      "
+echo "       ### ////////////     \\\\\\\\\\\\\  ###      "
+echo "       ###///      \'/       \`/       \\\ ###      "
+echo "       ###'':=======/         \========:`` ###      "
+echo "     /\##'''  ___  /           \  ___   ````##/\    "
+echo "    /  \#         ( O _______ O )           #/  \   "
+echo "   |                                             |  "
+echo "   |                    | |                      |  "
+echo "    \                   | |                     /   "
+echo "     \___|          ,=========,            |___/    "
+echo "         |\     ,,//'''''''''''\\,,       /|        "
+echo "         | |          _______            | |        "
+echo "         | \         '       '          /  |        "
+echo "         |  \                          /   |        "
+echo "   __    |   \                        /    |    __  "
+echo "  |  |---|    \,____________________,'     |---|  | "
+echo "  |__|---|                                 |---|__| "
+echo "         |                                 |        "
+echo "         |      INSTALLATION COMPLETE      |        " 
+
